@@ -31,12 +31,13 @@ function start () {
         }
     ])
     .then(function(err,data) {
-       var chosenitem = data;
+       var chosenitem = data.hello;
+       for (var i = 0; i < data.length; i++) {
 
-       connection.query('SELECT * FROM bamazon WHERE product =?', [chosenitem], 
-       function (error,moredata) 
-       {
-        console.log(moredata.price);
+    connection.query('SELECT * FROM bamazon WHERE product = ?', [chosenitem], 
+    function (error,moredata) 
+    {
+    console.log(moredata[0]);
     }
 )
 
