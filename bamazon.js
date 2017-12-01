@@ -20,7 +20,7 @@ function start () {
         {
             type: 'list',
             message: 'Choose item',
-            name: 'hello',
+            name: 'choose',
             choices: function() {
                 var choiceArray = [];
                 for (var i = 0; i < results.length; i++) {
@@ -30,14 +30,13 @@ function start () {
               },
         }
     ])
-    .then(function(err,data) {
-       var chosenitem = data.hello;
-       for (var i = 0; i < data.length; i++) {
+    .then(function(data) {
+       var chosenitem = data.choose;
 
     connection.query('SELECT * FROM bamazon WHERE product = ?', [chosenitem], 
-    function (error,moredata) 
+    function (error,result) 
     {
-    console.log(moredata[0]);
+    console.log("the price is $" + parseFloat(result[0.0].price));
     }
 )
 
